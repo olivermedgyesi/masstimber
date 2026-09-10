@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Section } from "@/components/site/section";
 import { SectionHeading } from "@/components/site/section-heading";
 
@@ -7,19 +6,16 @@ const PROJECTS = [
     name: "Westshore Potash Shed",
     meta: "Tsawwassen, BC · Industrial · Glulam",
     body: "An enormous arch glulam potash shed at the Tsawwassen export terminal.",
-    image: null,
   },
   {
     name: "St. George's Senior School",
     meta: "Vancouver, BC · Institutional · Hybrid (CLT + Glulam)",
     body: "CLT and glulam roof for the Grand Hall, incorporating a unique array of splayed columns supporting intermediate beams.",
-    image: "/projects/st-georges.jpg",
   },
   {
     name: "BCIT CSC",
     meta: "Burnaby, BC · Institutional · Mass Timber (CLT + Glulam)",
     body: "A true multistorey wood structure using CLT and glulam at BCIT's Burnaby campus.",
-    image: "/projects/bcit-csc.jpg",
   },
 ];
 
@@ -35,20 +31,12 @@ export function Proof() {
       <ul className="mt-14 grid gap-x-10 gap-y-14 md:grid-cols-3">
         {PROJECTS.map((project) => (
           <li key={project.name}>
-            <div className="relative aspect-[3/2] overflow-hidden border border-nero/15 bg-nero/5">
-              {project.image ? (
-                <Image
-                  src={project.image}
-                  alt={project.name}
-                  fill
-                  sizes="(min-width: 768px) 33vw, 100vw"
-                  className="object-cover"
-                />
-              ) : (
-                <span className="absolute inset-0 flex items-center justify-center text-[0.7rem] uppercase tracking-[0.2em] text-nero/30">
-                  Photo to follow
-                </span>
-              )}
+            {/* Project photography still to be supplied — placeholder frame
+                holds the layout in the meantime. */}
+            <div className="relative flex aspect-[3/2] items-center justify-center overflow-hidden border border-nero/15 bg-nero/5">
+              <span className="text-[0.7rem] uppercase tracking-[0.2em] text-nero/30">
+                Image to be added
+              </span>
             </div>
             <p className="mt-5 text-[0.7rem] uppercase tracking-[0.16em] text-pumpkin">
               {project.meta}
