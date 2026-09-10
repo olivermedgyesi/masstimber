@@ -2,38 +2,31 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
 
+/*
+  Single-page site for now — nav targets are sections of the homepage, not
+  routes. Restore route hrefs here if /services, /about etc. come back.
+*/
 const NAV_LINKS = [
-  { href: "/about", label: "About" },
-  { href: "/services", label: "Services" },
-  { href: "/blog", label: "Blog" },
-  { href: "/contact", label: "Contact" },
+  { href: "/#services", label: "Services" },
+  { href: "/#how-it-works", label: "Process" },
+  { href: "/#projects", label: "Projects" },
+  { href: "/#faq", label: "FAQ" },
 ] as const;
 
+const CTA_HREF = "/#contact-cta";
+
 export function SiteHeader() {
-  const pathname = usePathname();
-  const isHome = pathname === "/";
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Close the mobile menu whenever the route changes (adjust state during render).
-  const [menuPath, setMenuPath] = useState(pathname);
-  if (pathname !== menuPath) {
-    setMenuPath(pathname);
-    setMenuOpen(false);
-  }
-
-  const solid = !isHome || menuOpen;
-
-  const isActive = (href: string) =>
-    pathname === href || pathname.startsWith(`${href}/`);
+  // Transparent over the hero; solid once the mobile panel is open behind it.
+  const solid = menuOpen;
 
   return (
     <header
       className={[
-        isHome ? "absolute" : "relative",
-        "inset-x-0 top-0 z-50 transition-colors duration-300",
+        "absolute inset-x-0 top-0 z-50 transition-colors duration-300",
         solid
           ? "border-b border-nero/10 bg-seashell/95 backdrop-blur"
           : "border-b border-transparent bg-transparent",
@@ -61,31 +54,17 @@ export function SiteHeader() {
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-9 md:flex">
-          {NAV_LINKS.map((link) => {
-            const active = isActive(link.href);
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                aria-current={active ? "page" : undefined}
-                className={[
-                  "border-b-2 pb-1 text-xs font-medium uppercase tracking-[0.16em] transition-colors",
-                  active ? "border-pumpkin" : "border-transparent",
-                  solid
-                    ? active
-                      ? "text-nero"
-                      : "text-nero/60 hover:text-nero"
-                    : active
-                      ? "text-seashell"
-                      : "text-seashell/75 hover:text-seashell",
-                ].join(" ")}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="border-b-2 border-transparent pb-1 text-xs font-medium uppercase tracking-[0.16em] text-seashell/75 transition-colors hover:border-pumpkin hover:text-seashell"
+            >
+              {link.label}
+            </Link>
+          ))}
           <Link
-            href="/contact"
+            href={CTA_HREF}
             className="inline-flex items-center bg-pumpkin px-5 py-3 text-xs font-medium uppercase tracking-[0.14em] text-seashell transition-colors hover:bg-[#c74d08] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pumpkin"
           >
             Get Project Pricing
@@ -124,7 +103,8 @@ export function SiteHeader() {
         </button>
       </div>
 
-      {/* Mobile panel */}
+      {/* Mobile panel — jumping to a section doesn't change the route, so each
+          link closes the panel itself. */}
       {menuOpen && (
         <nav
           id="mobile-nav"
@@ -135,14 +115,15 @@ export function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
-                aria-current={isActive(link.href) ? "page" : undefined}
-                className="border-b border-nero/10 py-4 text-sm font-medium uppercase tracking-[0.16em] text-nero/70 aria-[current=page]:text-pumpkin"
+                onClick={() => setMenuOpen(false)}
+                className="border-b border-nero/10 py-4 text-sm font-medium uppercase tracking-[0.16em] text-nero/70"
               >
                 {link.label}
               </Link>
             ))}
             <Link
-              href="/contact"
+              href={CTA_HREF}
+              onClick={() => setMenuOpen(false)}
               className="mt-6 inline-flex items-center justify-center bg-pumpkin px-5 py-4 text-xs font-medium uppercase tracking-[0.14em] text-seashell"
             >
               Get Project Pricing

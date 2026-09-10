@@ -72,7 +72,7 @@ export function ServicesOverview() {
         </ol>
 
         <div className="mt-12 lg:mt-14">
-          <CtaLink href="/contact">Talk to us about your project</CtaLink>
+          <CtaLink href="#contact-cta">Talk to us about your project</CtaLink>
         </div>
       </div>
     </section>

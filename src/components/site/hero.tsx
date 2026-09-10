@@ -73,8 +73,8 @@ export function Hero() {
           </h1>
 
           <div className="mt-8 flex flex-wrap items-center gap-4">
-            <CtaLink href="/contact">Get project pricing</CtaLink>
-            <CtaLink href="/services" variant="outline" tone="dark">
+            <CtaLink href="#contact-cta">Get project pricing</CtaLink>
+            <CtaLink href="#services" variant="outline" tone="dark">
               Our services
             </CtaLink>
           </div>

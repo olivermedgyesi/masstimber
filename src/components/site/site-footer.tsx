@@ -3,10 +3,11 @@ import Link from "next/link";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/services", label: "Services" },
-  { href: "/blog", label: "Blog" },
-  { href: "/contact", label: "Contact" },
+  { href: "/#services", label: "Services" },
+  { href: "/#how-it-works", label: "Process" },
+  { href: "/#projects", label: "Projects" },
+  { href: "/#faq", label: "FAQ" },
+  { href: "/#contact-cta", label: "Contact" },
 ];
 
 export function SiteFooter() {

@@ -31,7 +31,7 @@ export function FinalCta() {
         </p>
 
         <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
-          <CtaLink href="/contact">Get project pricing</CtaLink>
+          <CtaLink href="#contact-cta">Get project pricing</CtaLink>
           <a
             href="tel:+16045191711"
             className="text-sm font-medium uppercase tracking-[0.14em] text-seashell/75 transition-colors hover:text-pumpkin"

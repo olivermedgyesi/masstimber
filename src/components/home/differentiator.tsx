@@ -40,7 +40,7 @@ export function Differentiator() {
         </div>
 
         <div className="mt-12">
-          <CtaLink href="/contact">Get project pricing</CtaLink>
+          <CtaLink href="#contact-cta">Get project pricing</CtaLink>
         </div>
       </div>
     </section>

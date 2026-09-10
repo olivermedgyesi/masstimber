@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { CtaLink } from "@/components/site/cta-link";
 import { Section } from "@/components/site/section";
 import { SectionHeading } from "@/components/site/section-heading";
 
@@ -22,12 +21,6 @@ export function WhoThisIsFor() {
               We work with project teams who want a qualified contractor they can
               trust to install their projects quickly and efficiently.
             </p>
-          </div>
-
-          <div className="mt-10">
-            <CtaLink href="/about" variant="ghost">
-              Learn more about mass timber
-            </CtaLink>
           </div>
         </div>
 
