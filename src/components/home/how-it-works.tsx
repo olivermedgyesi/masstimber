@@ -1,13 +1,7 @@
 import type { ReactNode } from "react";
 import { Section } from "@/components/site/section";
-import { SectionHeading } from "@/components/site/section-heading";
+import { SectionHeader } from "@/components/site/section-header";
 
-/*
-  Process icons — line art on a 24x24 grid, 1.5px stroke, inheriting colour
-  (Pumpkin) from the icon frame. Drawn rather than pulled from an icon set so
-  the metaphors are construction-specific: drawings under review, a signed
-  price, a beam being set.
-*/
 const iconProps = {
   viewBox: "0 0 24 24",
   fill: "none",
@@ -17,7 +11,6 @@ const iconProps = {
   strokeLinejoin: "round",
 } as const;
 
-/* Magnifier over drawing lines — reviewing the set. */
 function ScopeIcon() {
   return (
     <svg {...iconProps} className="h-7 w-7">
@@ -28,7 +21,6 @@ function ScopeIcon() {
   );
 }
 
-/* Sheet with a folded corner and a confirmed line — the fixed contract price. */
 function PricingIcon() {
   return (
     <svg {...iconProps} className="h-7 w-7">
@@ -39,7 +31,6 @@ function PricingIcon() {
   );
 }
 
-/* Beam landing onto two posts — the set itself. */
 function InstallIcon() {
   return (
     <svg {...iconProps} className="h-7 w-7">
@@ -78,25 +69,20 @@ const STEPS: Step[] = [
 export function HowItWorks() {
   return (
     <Section id="how-it-works">
-      <SectionHeading className="max-w-none md:whitespace-nowrap">
-        How a Contech project works
-      </SectionHeading>
+      <SectionHeader
+        heading="How a Contech project works"
+        headingClassName="lg:whitespace-nowrap"
+      />
 
       <ol className="mt-14 grid gap-10 md:mt-16 md:grid-cols-3 md:gap-8 lg:gap-12">
-        {STEPS.map((step, index) => (
+        {STEPS.map((step) => (
           <li key={step.title} className="flex flex-col">
-            <div className="flex items-center gap-4">
-              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-nero/15 bg-seashell text-pumpkin">
+            <div className="flex items-center gap-3">
+              <span className="shrink-0 text-pumpkin" aria-hidden="true">
                 {step.icon}
               </span>
-              <span className="text-xs font-medium uppercase tracking-[0.2em] text-nero/40">
-                Step {String(index + 1).padStart(2, "0")}
-              </span>
+              <h3 className="text-xl font-semibold text-nero">{step.title}</h3>
             </div>
-
-            <h3 className="mt-6 text-xl font-semibold text-nero">
-              {step.title}
-            </h3>
             <p className="mt-3 max-w-sm leading-relaxed text-nero/70">
               {step.body}
             </p>

@@ -1,16 +1,5 @@
 import localFont from "next/font/local";
 
-/*
-  Brand typography — system A from brand-guidelines.md:
-    Headlines   → Aware Bold
-    Subheads    → Neue Haas Grotesk Display Pro, Medium (500)
-    Body        → Neue Haas Grotesk Display Pro, Roman (400)
-
-  NOTE: AwareBold.ttf is currently the TRIAL file — uppercase A–Z, ".", "!",
-  and space only (no lowercase, digits, comma, or apostrophe). Use it for
-  all-caps display headings only until the full licensed file is supplied.
-*/
-
 export const aware = localFont({
   src: "./fonts/AwareBold.ttf",
   variable: "--font-aware",

@@ -3,18 +3,19 @@ import Link from "next/link";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
-  { href: "/#services", label: "Services" },
+  { href: "/services", label: "Services" },
   { href: "/#how-it-works", label: "Process" },
   { href: "/#projects", label: "Projects" },
   { href: "/#faq", label: "FAQ" },
-  { href: "/#contact-cta", label: "Contact" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-nero px-6 py-16 text-seashell md:px-10">
+    <footer className="bg-nero px-6 pb-16 pt-12 text-seashell md:px-10">
       <div className="mx-auto w-full max-w-[1280px]">
         <div className="flex flex-col gap-12 border-b border-seashell/15 pb-12 md:flex-row md:items-start md:justify-between">
           <div className="max-w-sm">

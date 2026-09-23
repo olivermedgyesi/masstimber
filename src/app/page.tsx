@@ -6,20 +6,17 @@ import { Differentiator } from "@/components/home/differentiator";
 import { Proof } from "@/components/home/proof";
 import { Faq } from "@/components/home/faq";
 import { FinalCta } from "@/components/home/final-cta";
-import { SectionDivider } from "@/components/site/section-divider";
 
 export default function Home() {
   return (
     <>
       <Hero />
       <WhoThisIsFor />
-      <SectionDivider />
       <ServicesOverview />
-      <SectionDivider />
       <HowItWorks />
       <Differentiator />
       <Proof />
-      <Faq />
+      <Faq boxed />
       <FinalCta />
     </>
   );
