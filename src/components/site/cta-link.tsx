@@ -29,11 +29,6 @@ type CtaLinkProps = {
   className?: string;
 };
 
-/*
-  Site-wide call to action. `solid` = pumpkin button; `outline` = bordered
-  button, no fill; `ghost` = inline text + arrow (secondary links like "Learn
-  more"). `tone` sets the outline/ghost colour on light vs dark backgrounds.
-*/
 export function CtaLink({
   href,
   children,

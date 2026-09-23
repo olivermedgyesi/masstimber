@@ -27,56 +27,93 @@ const FAQS = [
   },
 ];
 
-export function Faq() {
+type FaqItem = { q: string; a: string };
+
+type FaqProps = {
+  heading?: string;
+  items?: FaqItem[];
+  boxed?: boolean;
+};
+
+export function Faq({
+  heading = "Common questions",
+  items = FAQS,
+  boxed = false,
+}: FaqProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  const plus = (isOpen: boolean) => (
+    <span className="relative block h-4 w-4 shrink-0" aria-hidden="true">
+      <span className="absolute left-0 top-1/2 h-px w-4 -translate-y-1/2 bg-current" />
+      <span
+        className={[
+          "absolute left-1/2 top-0 h-4 w-px -translate-x-1/2 bg-current transition-transform duration-200",
+          isOpen ? "scale-y-0" : "scale-y-100",
+        ].join(" ")}
+      />
+    </span>
+  );
+
+  const list = (
+    <div
+      className={
+        boxed ? "mt-8 grid gap-3 sm:mt-10 md:mt-12" : "mt-12 border-t border-nero/15"
+      }
+    >
+      {items.map((item, index) => {
+        const isOpen = openIndex === index;
+        return (
+          <div
+            key={item.q}
+            className={
+              boxed
+                ? "border border-nero/15 bg-seashell"
+                : "border-b border-nero/15"
+            }
+          >
+            <h3>
+              <button
+                type="button"
+                onClick={() => setOpenIndex(isOpen ? null : index)}
+                aria-expanded={isOpen}
+                className={[
+                  "flex w-full items-center justify-between gap-6 text-left",
+                  boxed ? "px-4 py-5 sm:px-5 md:px-6" : "py-6",
+                ].join(" ")}
+              >
+                <span className="text-lg font-medium text-nero">{item.q}</span>
+                {boxed ? (
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center bg-pumpkin text-seashell">
+                    {plus(isOpen)}
+                  </span>
+                ) : (
+                  <span className="flex shrink-0 text-pumpkin">{plus(isOpen)}</span>
+                )}
+              </button>
+            </h3>
+            <div
+              className={[
+                "grid transition-all duration-200",
+                boxed ? "px-4 sm:px-5 md:px-6" : "",
+                isOpen ? "grid-rows-[1fr] pb-6" : "grid-rows-[0fr]",
+              ].join(" ")}
+            >
+              <div className="overflow-hidden">
+                <p className="max-w-[70ch] leading-relaxed text-nero/70">
+                  {item.a}
+                </p>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
 
   return (
     <Section id="faq">
-      <SectionHeading>Common questions</SectionHeading>
-
-      <div className="mt-12 border-t border-nero/15">
-        {FAQS.map((item, index) => {
-          const isOpen = openIndex === index;
-          return (
-            <div key={item.q} className="border-b border-nero/15">
-              <h3>
-                <button
-                  type="button"
-                  onClick={() => setOpenIndex(isOpen ? null : index)}
-                  aria-expanded={isOpen}
-                  className="flex w-full items-center justify-between gap-6 py-6 text-left"
-                >
-                  <span className="text-lg font-medium text-nero">{item.q}</span>
-                  <span
-                    className="relative h-4 w-4 shrink-0 text-pumpkin"
-                    aria-hidden="true"
-                  >
-                    <span className="absolute left-0 top-1/2 h-px w-4 -translate-y-1/2 bg-current" />
-                    <span
-                      className={[
-                        "absolute left-1/2 top-0 h-4 w-px -translate-x-1/2 bg-current transition-transform duration-200",
-                        isOpen ? "scale-y-0" : "scale-y-100",
-                      ].join(" ")}
-                    />
-                  </span>
-                </button>
-              </h3>
-              <div
-                className={[
-                  "grid transition-all duration-200",
-                  isOpen ? "grid-rows-[1fr] pb-6" : "grid-rows-[0fr]",
-                ].join(" ")}
-              >
-                <div className="overflow-hidden">
-                  <p className="max-w-[70ch] leading-relaxed text-nero/70">
-                    {item.a}
-                  </p>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+      <SectionHeading>{heading}</SectionHeading>
+      {list}
     </Section>
   );
 }

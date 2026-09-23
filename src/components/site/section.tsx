@@ -2,15 +2,11 @@ import type { ReactNode } from "react";
 
 type SectionProps = {
   id?: string;
-  tone?: "light" | "dark";
+  tone?: "light" | "dark" | "tint";
   className?: string;
   children: ReactNode;
 };
 
-/*
-  Standard homepage/page section: consistent horizontal gutter, vertical
-  rhythm, and max-width container. `tone="dark"` = Nero background.
-*/
 export function Section({
   id,
   tone = "light",
@@ -22,7 +18,11 @@ export function Section({
       id={id}
       className={[
         "px-6 py-20 md:px-10 md:py-28 lg:py-32",
-        tone === "dark" ? "bg-nero text-seashell" : "bg-seashell text-nero",
+        tone === "dark"
+          ? "bg-nero text-seashell"
+          : tone === "tint"
+            ? "bg-nero/[0.04] text-nero"
+            : "bg-seashell text-nero",
         className,
       ].join(" ")}
     >

@@ -4,11 +4,6 @@ type SectionHeadingProps = {
   eyebrow?: string;
   children: ReactNode;
   tone?: "light" | "dark";
-  /*
-    Headings set in Aware (all-caps display face). Set `plain` for headings the
-    trial Aware file can't render (apostrophes / digits) — they fall back to
-    Neue Haas Grotesk Bold, sentence case.
-  */
   plain?: boolean;
   className?: string;
 };

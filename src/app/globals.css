@@ -1,14 +1,5 @@
 @import "tailwindcss";
 
-/*
-  Contech Mass Timber theme.
-  Palette is brand-locked to three colours (see brand-guidelines.md).
-  Light-mode only — a "dark" section is a Nero background, not a system theme.
-
-  Typography — system A:
-    font-display → Aware Bold (all-caps headlines only; trial file is caps-only)
-    font-body    → Neue Haas Grotesk Display Pro (Roman 400 / Medium 500 / Bold 700)
-*/
 @theme {
   --color-pumpkin: #e4580a;
   --color-seashell: #fcf7f1;

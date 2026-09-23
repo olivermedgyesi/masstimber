@@ -4,23 +4,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-/*
-  Single-page site for now — nav targets are sections of the homepage, not
-  routes. Restore route hrefs here if /services, /about etc. come back.
-*/
 const NAV_LINKS = [
-  { href: "/#services", label: "Services" },
-  { href: "/#how-it-works", label: "Process" },
-  { href: "/#projects", label: "Projects" },
-  { href: "/#faq", label: "FAQ" },
+  { href: "/about", label: "About" },
+  { href: "/services", label: "Services" },
+  { href: "/blog", label: "Blog" },
 ] as const;
 
-const CTA_HREF = "/#contact-cta";
+const CTA_HREF = "/contact";
 
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Transparent over the hero; solid once the mobile panel is open behind it.
   const solid = menuOpen;
 
   return (
@@ -52,7 +46,6 @@ export function SiteHeader() {
           />
         </Link>
 
-        {/* Desktop nav */}
         <nav className="hidden items-center gap-9 md:flex">
           {NAV_LINKS.map((link) => (
             <Link
@@ -71,7 +64,6 @@ export function SiteHeader() {
           </Link>
         </nav>
 
-        {/* Mobile toggle */}
         <button
           type="button"
           onClick={() => setMenuOpen((open) => !open)}
@@ -103,8 +95,6 @@ export function SiteHeader() {
         </button>
       </div>
 
-      {/* Mobile panel — jumping to a section doesn't change the route, so each
-          link closes the panel itself. */}
       {menuOpen && (
         <nav
           id="mobile-nav"
