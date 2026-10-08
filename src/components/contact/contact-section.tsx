@@ -3,8 +3,8 @@ import { Section } from "@/components/site/section";
 import { SectionHeading } from "@/components/site/section-heading";
 import { ContactForm } from "@/components/contact/contact-form";
 
-const EMAIL: string | null = null;
-const OFFICE_HOURS: string | null = null;
+const EMAIL: string | null = "info@contechconstructionltd.com";
+const OFFICE_HOURS: string | null = "7:00 am to 5:00 pm";
 
 function DetailRow({ label, children }: { label: string; children: ReactNode }) {
   return (

@@ -32,7 +32,20 @@ const PROJECTS = [
   },
 ];
 
-const TESTIMONIAL_COUNT = 2;
+const TESTIMONIALS = [
+  {
+    quote:
+      "Throughout the project, Contech demonstrated a high-level of professionalism and knowledge of their craft, from management level all the way through to their field team. Their installation was organized, delivered on-time and overall well-executed.",
+    attribution: "Adam Thomson, Senior Project Coordinator",
+    project: "St. George's Senior School, Great Hall",
+  },
+  {
+    quote:
+      "Contech demonstrated exceptional planning and execution by developing a clear and effective strategy for staging deliveries and positioning the crane to complete all necessary lifts efficiently. Their team executed the work with precision and professionalism, completing the installation several days ahead of schedule.",
+    attribution: "Sam Cukier, Sr. Project Manager — Kinetic Construction Ltd.",
+    project: "UBC Applied Sciences and Digital Design Building",
+  },
+];
 
 export function Proof() {
   return (
@@ -70,15 +83,21 @@ export function Proof() {
           What partners say
         </p>
         <div className="mt-8 grid gap-10 md:grid-cols-2">
-          {Array.from({ length: TESTIMONIAL_COUNT }).map((_, index) => (
-            <figure key={index} className="border-l-2 border-nero/15 pl-6">
-              <blockquote className="text-lg leading-relaxed text-nero/50">
-                &ldquo;Quote from a GC contact about working with Contech Mass
-                Timber — scheduling, quality, coordination, or
-                constructability.&rdquo;
+          {TESTIMONIALS.map((testimonial) => (
+            <figure
+              key={testimonial.attribution}
+              className="border-l-2 border-pumpkin pl-6"
+            >
+              <blockquote className="text-lg leading-relaxed text-nero/80">
+                &ldquo;{testimonial.quote}&rdquo;
               </blockquote>
-              <figcaption className="mt-4 text-sm uppercase tracking-[0.14em] text-nero/40">
-                Name, Title — Company
+              <figcaption className="mt-4">
+                <span className="block text-sm uppercase tracking-[0.14em] text-nero">
+                  {testimonial.attribution}
+                </span>
+                <span className="mt-1 block text-sm text-nero/55">
+                  {testimonial.project}
+                </span>
               </figcaption>
             </figure>
           ))}
