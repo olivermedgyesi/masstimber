@@ -1,4 +1,6 @@
-"use server";
+// Runs in the browser: Web3Forms rejects server-side submissions on the free plan.
+// The access key is public by design.
+const WEB3FORMS_ACCESS_KEY = "46de3949-a55b-4a26-816d-5705b050b688";
 
 export type ContactFormState = {
   status: "idle" | "success" | "error";
@@ -42,7 +44,29 @@ export async function submitContact(
     };
   }
 
-  console.info("[contact] new enquiry", enquiry);
+  try {
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: `New enquiry from ${enquiry.name} (${enquiry.company})`,
+        from_name: "Contech Mass Timber website",
+        replyto: enquiry.email,
+        ...enquiry,
+      }),
+    });
+    const data = await res.json().catch(() => null);
+    if (!res.ok || !data?.success)
+      throw new Error(data?.message ?? res.statusText);
+  } catch (err) {
+    console.error("[contact] submission failed", err);
+    return {
+      status: "error",
+      message:
+        "Sorry, something went wrong sending your message. Please try again or email us directly.",
+    };
+  }
 
   return {
     status: "success",
